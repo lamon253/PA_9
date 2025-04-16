@@ -42,4 +42,4 @@ sfml-system-s-d.lib(Utils.obj) : warning LNK4099: PDB '' was not found with 'sfm
 sfml-system-s-d.lib(Clock.obj) : warning LNK4099: PDB '' was not found with 'sfml-system-s-d.lib(Clock.obj)' or at ''; linking object as if no debug info
 sfml-system-s-d.lib(Sleep.obj) : warning LNK4099: PDB '' was not found with 'sfml-system-s-d.lib(Sleep.obj)' or at ''; linking object as if no debug info
 sfml-system-s-d.lib(SleepImpl.obj) : warning LNK4099: PDB '' was not found with 'sfml-system-s-d.lib(SleepImpl.obj)' or at ''; linking object as if no debug info
-  SFML-Test.vcxproj -> C:\Users\jackl\Desktop\PA9\sfml_test\SFML-Test\x64\Debug\SFML-Test.exe
+  SFML-Test.vcxproj -> C:\Users\jackl\OneDrive\Documents\GitHub\PA_9\PA_9\SFML-Test\x64\Debug\SFML-Test.exe
