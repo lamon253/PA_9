@@ -8,6 +8,7 @@ public:
 
 	void drawBoard(sf::RenderWindow* window);
 private:
+	friend class pawn;
 	sf::Color color1;
 	sf::Color color2;
 	std::vector<std::vector<tile>> tiles;

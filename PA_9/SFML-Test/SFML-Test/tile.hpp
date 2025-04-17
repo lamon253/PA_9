@@ -7,10 +7,14 @@ public:
 	
 	void drawTile(sf::RenderWindow* window);
 
-	sf::CircleShape* getpCircle();
-	void setpCircle(sf::CircleShape* newpCircle);
+	sf::Vector2f getTilePos();
+	//no setter for position since tiles should be static
+	void setpPawn(void* newpPawn);
+	void* getpPawn();
+
+	sf::RectangleShape* getRect();
 
 private:
-	sf::CircleShape* pCircle;
 	sf::RectangleShape rectangle;
+	void* pPawn;
 };

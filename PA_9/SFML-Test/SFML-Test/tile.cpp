@@ -5,20 +5,24 @@ tile::tile(int size, int x, int y, sf::Color color)
 	rectangle.setSize(sf::Vector2f{(float)size,(float)size});
 	rectangle.setFillColor(color);
 	rectangle.setPosition(sf::Vector2f{ (float)x,(float)y});
-
-	pCircle = nullptr;
 }
 void tile::drawTile(sf::RenderWindow* window)
 {
 	window->draw(rectangle);
-	if (pCircle != nullptr)
-		window->draw(*pCircle);
 }
-sf::CircleShape* tile::getpCircle()
+sf::Vector2f tile::getTilePos()
 {
-	return pCircle;
+	return rectangle.getPosition();
 }
-void tile::setpCircle(sf::CircleShape* newpCircle)
+void tile::setpPawn(void* newpPawn)
 {
-	pCircle = newpCircle;
+	pPawn = newpPawn;
+}
+void* tile::getpPawn()
+{
+	return pPawn;
+}
+sf::RectangleShape* tile::getRect()
+{
+	return &rectangle;
 }

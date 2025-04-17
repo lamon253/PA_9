@@ -1,4 +1,4 @@
-#include  "board.hpp"
+#include  "pawn.hpp"
 
 int main()
 {
@@ -7,7 +7,8 @@ int main()
     sf::RectangleShape rectangle(sf::Vector2f{100,100});
 
     //tile t(50,200,200,sf::Color::Blue);
-    board b(1000,1000,10,10, sf::Color::Red, sf::Color::Blue);
+    board b(1000,1000,10,10, sf::Color::Black, sf::Color::White);
+    pawn p(.75, 0, 2, sf::Color::Red, &b);
 
     shape.setFillColor(sf::Color::Green);
     rectangle.setFillColor(sf::Color::Red);
@@ -26,6 +27,7 @@ int main()
         //window.draw(rectangle);
         //t.drawTile(&window);
         b.drawBoard(&window);
+        p.drawPawn(&window);
         window.display();
     }
 }
