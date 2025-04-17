@@ -13,7 +13,7 @@ board::board(int height, int width, int rows, int columns, sf::Color color1, sf:
 		tiles.push_back(std::vector<tile> {});
 		for (int j = 0; j < rows; j++)
 		{
-			tiles[i].push_back(tile(size, j*size, i*size, colors[(i + j) % 2]));
+			tiles[i].push_back(tile(size, i*size, j*size, colors[(i + j) % 2]));
 		}
 	}
 }

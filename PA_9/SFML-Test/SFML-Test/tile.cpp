@@ -22,6 +22,10 @@ sf::Vector2f tile::getTilePos()
 void tile::setpPawn(pawn* newpPawn)
 {
 	pPawn = newpPawn;
+	if (pPawn != nullptr)
+	{
+		pPawn->setPos(rectangle.getPosition() + sf::Vector2f{rectangle.getSize().x / 2 - pPawn->getRadius(), rectangle.getSize().x / 2 - pPawn->getRadius()});
+	}
 }
 pawn* tile::getpPawn()
 {
