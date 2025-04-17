@@ -1,4 +1,10 @@
-#include "board.hpp"
+#pragma once
+
+#include <SFML/Graphics.hpp>
+#include <vector>
+
+class board;
+class tile;
 
 class pawn
 {

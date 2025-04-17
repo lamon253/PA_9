@@ -1,4 +1,10 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
+#include <vector>
+
+class pawn;
+class board;
 
 class tile
 {
@@ -9,12 +15,12 @@ public:
 
 	sf::Vector2f getTilePos();
 	//no setter for position since tiles should be static
-	void setpPawn(void* newpPawn);
-	void* getpPawn();
+	void setpPawn(pawn* newpPawn);
+	pawn* getpPawn();
 
 	sf::RectangleShape* getRect();
 
 private:
 	sf::RectangleShape rectangle;
-	void* pPawn;
+	pawn* pPawn;
 };

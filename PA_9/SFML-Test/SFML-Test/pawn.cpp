@@ -1,4 +1,5 @@
 #include "pawn.hpp"
+#include "board.hpp"
 
 pawn::pawn(float size, int newColumn, int newRow, sf::Color color, board* newBoard)
 {
