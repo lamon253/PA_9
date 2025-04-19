@@ -1,8 +1,17 @@
-#include  "pawn.hpp"
-#include  "board.hpp"
+/*
+*/
+
+#include "pawn.hpp"
+#include "board.hpp"
+#include "Test.hpp"
 
 int main()
 {
+    Test test;
+    //test.TestSFMLWindowStatus();
+    //test.TestTileDisplay();
+
+
     sf::RenderWindow window(sf::VideoMode({ 1000, 1000 }), "checkers");
     sf::CircleShape shape(100.f);
     sf::RectangleShape rectangle(sf::Vector2f{100,100});
