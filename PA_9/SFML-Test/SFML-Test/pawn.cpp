@@ -11,10 +11,12 @@ pawn::pawn(float size, int newColumn, int newRow, bool newDir, sf::Color color, 
 	column = newColumn;
 	row = newRow;
 
+	pieceColor = color;
+
 	dir = newDir;
 	circle.setRadius(radius);
 	circle.setPosition(pBoard->tiles[column][row].getTilePos() + sf::Vector2f{ len/2 - radius, len / 2 - radius });
-	circle.setFillColor(color);
+	circle.setFillColor(getColor());
 
 	pBoard->tiles[column][row].setpPawn(this);
 	//having a pointer to any pawn on a tile in its class will be helpful when checking if a tile is empty
@@ -68,4 +70,9 @@ float pawn::getRadius()
 void pawn::setRadius(float newRadius)
 {
 	radius = newRadius;
+}
+
+sf::Color king::getColor() const
+{
+	return getDir() ? sf::Color::Yellow : sf::Color::Magenta;
 }
