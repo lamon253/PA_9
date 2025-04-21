@@ -11,6 +11,7 @@ class pawn
 {
 public:
 	pawn(float size, int newColumn, int newRow, bool newDir, sf::Color color, board* newBoard);
+	pawn(pawn* pPawn);
 
 	virtual void drawPawn(sf::RenderWindow* window);
 	bool tryMove(int newColumn, int newRow);
@@ -25,6 +26,8 @@ public:
 
 	float getRadius();
 	void setRadius(float newRadius);
+
+	board* getpBoard();
 
 	virtual sf::Color getColor() const { return pieceColor; }
 
