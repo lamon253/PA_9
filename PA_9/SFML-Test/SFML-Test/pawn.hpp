@@ -14,7 +14,7 @@ public:
 	pawn(pawn* pPawn);
 
 	virtual void drawPawn(sf::RenderWindow* window);
-	bool tryMove(int newColumn, int newRow);
+	int tryMove(int newColumn, int newRow);
 
 	sf::Vector2f getPos();
 	void setPos(sf::Vector2f newPos);

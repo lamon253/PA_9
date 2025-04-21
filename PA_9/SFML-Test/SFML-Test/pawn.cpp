@@ -38,12 +38,12 @@ void pawn::drawPawn(sf::RenderWindow* window)
 {
 	window->draw(circle);
 }
-bool pawn::tryMove(int newColumn, int newRow)
+int pawn::tryMove(int newColumn, int newRow)
 {
 	int dRow = newRow - row;
 	int dColumn = newColumn - column;
 	if (abs(dRow) != abs(dColumn))//moves have to be diagonal
-		return false;
+		return 0;
 	if (abs(dColumn) >= 1 && ((dir && dRow >= 1) || (!dir && dRow <= -1)))//path is 1 diagonal length
 	{
 		if (pBoard->tiles[newColumn][newRow].getpPawn() == nullptr && abs(dRow) == 1)//no other pawn on that square
@@ -62,7 +62,7 @@ bool pawn::tryMove(int newColumn, int newRow)
 				row = newRow;
 			}
 
-			return true;
+			return 1;
 		}
 		else if (abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->circle.getFillColor() != this->circle.getFillColor())
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
@@ -83,7 +83,7 @@ bool pawn::tryMove(int newColumn, int newRow)
 				row = newRow;
 			}
 
-			return true;
+			return 2;//return 2 for piece jumped
 		}
 	}
 	return false;

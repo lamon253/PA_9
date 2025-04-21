@@ -97,7 +97,7 @@ int main()
                     }
                     else
                     {
-                        bool check = false;
+                        int check = 0;
                         do
                         {
                             cout << "Enter Where to Move the Piece" << endl;
@@ -145,7 +145,7 @@ int main()
                     }
                     else
                     {
-                        bool check = false;
+                        int check = false;
                         do
                         {
                             cout << "Enter Where to Move the Piece" << endl;
