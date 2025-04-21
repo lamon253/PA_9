@@ -82,7 +82,7 @@ int main()
             int tempRow = 0, tempCol = 0;
             int newRow = 0, newCol = 0;
             pawn* tempPawn = nullptr;
-            bool check = false;
+            int check = 0;
             bool select = false;
             bool click = true;
 
@@ -129,7 +129,8 @@ int main()
                             else click = true;
                         }
                     }
-                    if (!(check = tempPawn->tryMove(newCol, newRow)))
+                    check = tempPawn->tryMove(newCol, newRow);
+                    if (check == 0)
                     {
                         cout << "Invalid Move try another" << endl;
                         select = false;
@@ -150,7 +151,7 @@ int main()
             int tempRow = 0, tempCol = 0;
             int newRow = 0, newCol = 0;
             pawn* tempPawn = nullptr;
-            bool check = false;
+            int check = 0;
             bool select = false;
             bool click = true;
 
@@ -197,7 +198,8 @@ int main()
                             else click = true;
                         }
                     }
-                    if (!(check = tempPawn->tryMove(newCol, newRow)))
+                    check = tempPawn->tryMove(newCol, newRow);
+                    if (check == 0)
                     {
                         cout << "Invalid Move try another" << endl;
                         select = false;
