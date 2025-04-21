@@ -116,6 +116,12 @@ int main()
                     }
                 }
             } while (input.length() != 2 || !isdigit(input[0]) || !isdigit(input[1]) || tempPawn == nullptr);
+
+            //add ending game function
+            if (pieces2.empty())
+            {
+                cout << "Player 2 Has run out of Pieces\nPlayer 1 Wins" << endl;
+            }
         }
         else //player 2 turn
         {
@@ -158,6 +164,12 @@ int main()
                     }
                 }
             } while (input.length() != 2 || !isdigit(input[0]) || !isdigit(input[1]) || tempPawn == nullptr);
+
+            //add ending game function
+            if (pieces1.empty())
+            {
+                cout << "Player 1 Has run out of Pieces\nPlayer 2 Wins" << endl;
+            }
         }
     }
 }
