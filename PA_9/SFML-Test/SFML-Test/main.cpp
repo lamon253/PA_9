@@ -82,40 +82,60 @@ int main()
             int tempRow = 0, tempCol = 0;
             int newRow = 0, newCol = 0;
             pawn* tempPawn = nullptr;
+            bool check = false;
+            bool select = false;
+            bool click = true;
+
             do
             {
                 cout << "Player 1 (Blue) Choose a Piece to Move (col row)" << endl;
-                cin >> input;
-                if (input.length() == 2 && isdigit(input[0]) && isdigit(input[1]))
+                while (!select)
                 {
-                    tempCol = input[0] - '0';
-                    tempRow = input[1] - '0';
-                    tempPawn = b.pieceSearch(tempCol, tempRow, pieces1);
-                    if (tempPawn == nullptr)
+                    while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                     {
-                        cout << "Couldn't Find a Piece Here" << endl;
-                    }
-                    else
-                    {
-                        int check = 0;
-                        do
+                        if (click)
                         {
-                            cout << "Enter Where to Move the Piece" << endl;
-                            cin >> input2;
-                            if (input2.length() == 2 && isdigit(input2[0]) && isdigit(input2[1]))
-                            {
-                                newCol = input2[0] - '0';
-                                newRow = input2[1] - '0';
-
-                                if (!(check = tempPawn->tryMove(newCol, newRow)))
-                                {
-                                    cout << "Invalid Move try another" << endl;
-                                }
-                            }
-                        } while (input2.length() != 2 || !isdigit(input2[0]) || !isdigit(input2[1]) || !check);
+                            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                            tempCol = mousePos.x / 125;
+                            tempRow = mousePos.y / 125;
+                            tempPawn = b.pieceSearch(tempCol, tempRow, pieces1);
+                            select = true;
+                            click = false;
+                        }
+                        else click = true;
                     }
                 }
-            } while (input.length() != 2 || !isdigit(input[0]) || !isdigit(input[1]) || tempPawn == nullptr);
+                if (tempPawn == nullptr)
+                {
+                    cout << "Couldn't Find a Piece Here" << endl;
+                    select = false;
+                }
+                else
+                {
+                    select = false;
+                    cout << "Enter Where to Move the Piece" << endl;
+                    while (!select)
+                    {
+                        while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                        {
+                            if (click)
+                            {
+                                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                                newCol = mousePos.x / 125;
+                                newRow = mousePos.y / 125;
+                                select = true;
+                                click = false;
+                            }
+                            else click = true;
+                        }
+                    }
+                    if (!(check = tempPawn->tryMove(newCol, newRow)))
+                    {
+                        cout << "Invalid Move try another" << endl;
+                        select = false;
+                    }
+                }
+            } while (tempPawn == nullptr || !check);
 
             //add ending game function
             if (pieces2.empty())
@@ -130,40 +150,60 @@ int main()
             int tempRow = 0, tempCol = 0;
             int newRow = 0, newCol = 0;
             pawn* tempPawn = nullptr;
+            bool check = false;
+            bool select = false;
+            bool click = true;
+
             do
             {
                 cout << "Player 2 (Red) Choose a Piece to Move (col row)" << endl;
-                cin >> input;
-                if (input.length() == 2 && isdigit(input[0]) && isdigit(input[1]))
+                while (!select)
                 {
-                    tempCol = input[0] - '0';
-                    tempRow = input[1] - '0';
-                    tempPawn = b.pieceSearch(tempCol, tempRow, pieces2);
-                    if (tempPawn == nullptr)
+                    while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                     {
-                        cout << "Couldn't Find a Piece Here" << endl;
-                    }
-                    else
-                    {
-                        int check = false;
-                        do
+                        if (click)
                         {
-                            cout << "Enter Where to Move the Piece" << endl;
-                            cin >> input2;
-                            if (input2.length() == 2 && isdigit(input2[0]) && isdigit(input2[1]))
-                            {
-                                newCol = input2[0] - '0';
-                                newRow = input2[1] - '0';
-
-                                if (!(check = tempPawn->tryMove(newCol, newRow)))
-                                {
-                                    cout << "Invalid Move try another" << endl;
-                                }
-                            }
-                        } while (input2.length() != 2 || !isdigit(input2[0]) || !isdigit(input2[1]) || !check);
+                            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                            tempCol = mousePos.x / 125;
+                            tempRow = mousePos.y / 125;
+                            tempPawn = b.pieceSearch(tempCol, tempRow, pieces2);
+                            select = true;
+                            click = false;
+                        }
+                        else click = true;
                     }
                 }
-            } while (input.length() != 2 || !isdigit(input[0]) || !isdigit(input[1]) || tempPawn == nullptr);
+                if (tempPawn == nullptr)
+                {
+                    cout << "Couldn't Find a Piece Here" << endl;
+                    select = false;
+                }
+                else
+                {
+                    select = false;
+                    cout << "Enter Where to Move the Piece" << endl;
+                    while (!select)
+                    {
+                        while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                        {
+                            if (click)
+                            {
+                                sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                                newCol = mousePos.x / 125;
+                                newRow = mousePos.y / 125;
+                                select = true;
+                                click = false;
+                            }
+                            else click = true;
+                        }
+                    }
+                    if (!(check = tempPawn->tryMove(newCol, newRow)))
+                    {
+                        cout << "Invalid Move try another" << endl;
+                        select = false;
+                    }
+                }
+            } while (tempPawn == nullptr || !check);
 
             //add ending game function
             if (pieces1.empty())
