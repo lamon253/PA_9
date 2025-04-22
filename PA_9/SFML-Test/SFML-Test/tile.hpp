@@ -1,7 +1,5 @@
 #pragma once
 
-#include "pawn.hpp" //added this so that I could use some pawn elements in board
-
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>

@@ -27,16 +27,3 @@ void board::drawBoard(sf::RenderWindow* window)
 		}
 	}
 }
-
-pawn* board::pieceSearch(int col, int row, std::vector<pawn*> pieces) const
-{
-	for (const auto& pawn : pieces)
-	{
-		if (pawn->getRow() == row && pawn->getCol() == col)
-		{
-			return pawn;
-		}
-	}
-	return nullptr;
-}
-
