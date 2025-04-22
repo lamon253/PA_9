@@ -129,14 +129,14 @@ int main()
                             else click = true;
                         }
                     }
-                    check = tempPawn->tryMove(newCol, newRow);
+                    check = tempPawn->tryMove(newCol, newRow, pieces2);
                     if (check == 0)
                     {
                         cout << "Invalid Move try another" << endl;
                         select = false;
                     }
                 }
-            } while (tempPawn == nullptr || !check);
+            } while (tempPawn == nullptr || check == 0);
 
             //add ending game function
             if (pieces2.empty())
@@ -198,14 +198,14 @@ int main()
                             else click = true;
                         }
                     }
-                    check = tempPawn->tryMove(newCol, newRow);
+                    check = tempPawn->tryMove(newCol, newRow, pieces1);
                     if (check == 0)
                     {
                         cout << "Invalid Move try another" << endl;
                         select = false;
                     }
                 }
-            } while (tempPawn == nullptr || !check);
+            } while (tempPawn == nullptr || check == 0);
 
             //add ending game function
             if (pieces1.empty())

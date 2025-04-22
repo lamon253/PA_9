@@ -38,7 +38,7 @@ void pawn::drawPawn(sf::RenderWindow* window)
 {
 	window->draw(circle);
 }
-int pawn::tryMove(int newColumn, int newRow)
+int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 {
 	int dRow = newRow - row;
 	int dColumn = newColumn - column;
@@ -66,6 +66,14 @@ int pawn::tryMove(int newColumn, int newRow)
 		}
 		else if (abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->circle.getFillColor() != this->circle.getFillColor())
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
+			for (int i = 0; i < pieces.size() - 1; i++) //deleting the jumped piece out of the pieces vector in main
+			{
+				if (pieces[i]->getCol() == (column + dColumn / 2) && pieces[i]->getRow() == (row + dRow / 2))
+				{
+					pieces.erase(pieces.begin() + i);
+					break;
+				}
+			}
 			delete pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn();//removes jumped pawn
 			pBoard->tiles[column + dColumn / 2][row + dRow / 2].setpPawn(nullptr);//sets the tile as empty
 
