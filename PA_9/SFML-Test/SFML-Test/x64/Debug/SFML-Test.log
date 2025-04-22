@@ -1,13 +1,3 @@
 ﻿  main.cpp
-C:\Users\jackl\OneDrive\Documents\GitHub\PA_9\PA_9\SFML-Test\SFML-Test\main.cpp(101,42): error C2039: 'pieceSearch': is not a member of 'board'
-      C:\Users\jackl\OneDrive\Documents\GitHub\PA_9\PA_9\SFML-Test\SFML-Test\board.hpp(10,7):
-      see declaration of 'board'
-  
-C:\Users\jackl\OneDrive\Documents\GitHub\PA_9\PA_9\SFML-Test\SFML-Test\main.cpp(170,42): error C2039: 'pieceSearch': is not a member of 'board'
-      C:\Users\jackl\OneDrive\Documents\GitHub\PA_9\PA_9\SFML-Test\SFML-Test\board.hpp(10,7):
-      see declaration of 'board'
-  
-  pawn.cpp
-C:\Users\jackl\OneDrive\Documents\GitHub\PA_9\PA_9\SFML-Test\SFML-Test\pawn.cpp(8,45): warning C4244: 'argument': conversion from 'float' to 'const unsigned __int64', possible loss of data
-  tile.cpp
-  Generating Code...
+C:\Users\myell\Documents\PA_9\PA_9\SFML-Test\SFML-Test\main.cpp(14,10): warning C4101: 'test': unreferenced local variable
+  SFML-Test.vcxproj -> C:\Users\myell\Documents\PA_9\PA_9\SFML-Test\x64\Debug\SFML-Test.exe
