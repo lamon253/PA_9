@@ -1,5 +1,5 @@
 Team Members:
-Jack Lamonica, Lab 
+Jack Lamonica, Lab 8
 Jim He, Lab 10
-Elliott Forman , Lab 
+Elliott Forman , Lab 3
 
