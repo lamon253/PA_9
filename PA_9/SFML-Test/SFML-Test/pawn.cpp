@@ -238,15 +238,15 @@ int king::checkMove(int newColumn, int newRow)
 }
 int checkStuck(pawn* pPawn)
 {
-	if (pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() + 1)
-		|| pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() - 1)
-		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() + 1)
-		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() - 1))
-		return 1;
 	if (pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() + 2)
 		|| pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() - 2)
 		|| pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() + 2)
 		|| pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() - 2))
 		return 2;
+	else if (pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() + 1)
+		|| pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() - 1)
+		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() + 1)
+		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() - 1))
+		return 1;
 	return 0;
 }
