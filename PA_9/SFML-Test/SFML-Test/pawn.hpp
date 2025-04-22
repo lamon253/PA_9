@@ -57,4 +57,4 @@ public:
 
 };
 
-bool checkStuck(pawn* pPawn);
+int checkStuck(pawn* pPawn);
