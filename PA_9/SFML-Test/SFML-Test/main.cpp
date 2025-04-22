@@ -135,6 +135,19 @@ int main()
                         cout << "Invalid Move try another" << endl;
                         select = false;
                     }
+                    else if (newRow == 0)
+                    {//king check
+                        for (int i = 0; i < pieces1.size(); i++) //adding the king to the vector
+                        {
+                            if (pieces1[i]->getRow() == 0 && pieces1[i]->isKing() == false)
+                            {
+                                king* pKing = new king(pieces1[i]);
+                                pieces1.erase(pieces1.begin() + i);
+                                pieces1.push_back(pKing);
+                                break;
+                            }
+                        }
+                    }
                 }
             } while (tempPawn == nullptr || check == 0);
 
@@ -203,6 +216,19 @@ int main()
                     {
                         cout << "Invalid Move try another" << endl;
                         select = false;
+                    }
+                    else if(newRow == 0)
+                    {//king check
+                        for (int i = 0; i < pieces2.size(); i++) //adding the king to the vector
+                        {
+                            if (pieces2[i]->getRow() == 0 && pieces2[i]->isKing() == false)
+                            {
+                                king* pKing = new king(pieces2[i]);
+                                pieces2.erase(pieces2.begin() + i);
+                                pieces2.push_back(pKing);
+                                break;
+                            }
+                        }
                     }
                 }
             } while (tempPawn == nullptr || check == 0);

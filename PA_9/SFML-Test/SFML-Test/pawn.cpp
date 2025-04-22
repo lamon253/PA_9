@@ -51,9 +51,10 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
 			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
 			{
+				column = newColumn;
+				row = newRow;
 				king* pKing = new king(this);
 				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-				delete this;
 			}
 			else
 			{
@@ -66,7 +67,7 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 		}
 		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor()))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
-			for (int i = 0; i < pieces.size() - 1; i++) //deleting the jumped piece out of the pieces vector in main
+			for (int i = 0; i < pieces.size(); i++) //deleting the jumped piece out of the pieces vector in main
 			{
 				if (pieces[i]->getCol() == (column + dColumn / 2) && pieces[i]->getRow() == (row + dRow / 2))
 				{
@@ -80,9 +81,10 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
 			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
 			{
+				column = newColumn;
+				row = newRow;
 				king* pKing = new king(this);
 				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-				delete this;
 			}
 			else
 			{
@@ -120,6 +122,11 @@ sf::Color king::getColor() const
 {
 	return getDir() ? sf::Color::Yellow : sf::Color::Magenta;
 }
+king::king(const pawn& p) : pawn(p)
+{
+	pieceColor = getColor();
+	circle.setFillColor(pieceColor);
+}
 int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 {
 	int dRow = newRow - row;
@@ -133,9 +140,10 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
 			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
 			{
+				column = newColumn;
+				row = newRow;
 				king* pKing = new king(this);
 				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-				delete this;
 			}
 			else
 			{
@@ -148,7 +156,7 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 		}
 		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor()))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
-			for (int i = 0; i < pieces.size() - 1; i++) //deleting the jumped piece out of the pieces vector in main
+			for (int i = 0; i < pieces.size(); i++) //deleting the jumped piece out of the pieces vector in main
 			{
 				if (pieces[i]->getCol() == (column + dColumn / 2) && pieces[i]->getRow() == (row + dRow / 2))
 				{
@@ -162,9 +170,10 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
 			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
 			{
+				column = newColumn;
+				row = newRow;
 				king* pKing = new king(this);
 				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-				delete this;
 			}
 			else
 			{

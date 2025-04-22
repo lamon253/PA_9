@@ -46,7 +46,7 @@ protected:
 class king : public pawn
 {
 public:
-	king(const pawn& p) : pawn(p) {}
+	king(const pawn& p);
 	
 	int tryMove(int newColumn, int newRow, std::vector<pawn*>& pieces) override;
 	bool isKing() const override { return true; }
