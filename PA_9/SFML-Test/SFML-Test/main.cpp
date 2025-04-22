@@ -168,6 +168,10 @@ int main()
                         else click = true;
                     }
                 }
+                if (newCol == tempPawn->getCol() && newRow == tempPawn->getRow())
+                {
+                    break;//makes double jump optional by clicking the same piece
+                }
                 check = tempPawn->tryMove(newCol, newRow, pieces1);
                 if (check == 0)
                 {
