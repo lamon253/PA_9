@@ -64,7 +64,7 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 
 			return 1;
 		}
-		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getColor() != this->getColor()) && ((dRow > 0 && dir == 1) || (dRow < 0 && dir == 0)))
+		else if (abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->circle.getFillColor() != this->circle.getFillColor())
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
 			for (int i = 0; i < pieces.size() - 1; i++) //deleting the jumped piece out of the pieces vector in main
 			{
@@ -119,61 +119,4 @@ board* pawn::getpBoard()
 sf::Color king::getColor() const
 {
 	return getDir() ? sf::Color::Yellow : sf::Color::Magenta;
-}
-int king::tryMove(int newColumn, int newRow, std::vector<pawn*>& pieces)
-{
-	int dRow = newRow - row;
-	int dColumn = newColumn - column;
-	if (abs(dRow) != abs(dColumn))//moves have to be diagonal
-		return 0;
-	else//path is diagonal
-	{
-		if (pBoard->tiles[newColumn][newRow].getpPawn() == nullptr && abs(dRow) == 1)//no other pawn on that square
-		{
-			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
-			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
-			{
-				king* pKing = new king(this);
-				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-				delete this;
-			}
-			else
-			{
-				pBoard->tiles[newColumn][newRow].setpPawn(this);//sets new pawn position
-				column = newColumn;
-				row = newRow;
-			}
-			return 1;
-		}
-		else if (abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getColor() != this->getColor())
-		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
-			for (int i = 0; i < pieces.size() - 1; i++) //deleting the jumped piece out of the pieces vector in main
-			{
-				if (pieces[i]->getCol() == (column + dColumn / 2) && pieces[i]->getRow() == (row + dRow / 2))
-				{
-					pieces.erase(pieces.begin() + i);
-					break;
-				}
-			}
-			delete pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn();//removes jumped pawn
-			pBoard->tiles[column + dColumn / 2][row + dRow / 2].setpPawn(nullptr);//sets the tile as empty
-
-			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
-			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
-			{
-				king* pKing = new king(this);
-				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-				delete this;
-			}
-			else
-			{
-				pBoard->tiles[newColumn][newRow].setpPawn(this);//sets new pawn position
-				column = newColumn;
-				row = newRow;
-			}
-
-			return 2;//return 2 for piece jumped
-		}
-	}
-	return false;
 }

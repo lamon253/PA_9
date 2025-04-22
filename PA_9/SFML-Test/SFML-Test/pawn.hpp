@@ -13,8 +13,8 @@ public:
 	pawn(float size, int newColumn, int newRow, bool newDir, sf::Color color, board* newBoard);
 	pawn(pawn* pPawn);
 
-	void drawPawn(sf::RenderWindow* window);
-	virtual int tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces);
+	virtual void drawPawn(sf::RenderWindow* window);
+	int tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces);
 
 	sf::Vector2f getPos();
 	void setPos(sf::Vector2f newPos);
@@ -33,7 +33,7 @@ public:
 
 	bool getDir() const { return dir; }
 	
-protected:
+private:
 	sf::CircleShape circle;
 	sf::Color pieceColor;
 	board* pBoard;
@@ -48,7 +48,6 @@ class king : public pawn
 public:
 	king(const pawn& p) : pawn(p) {}
 	
-	int tryMove(int newColumn, int newRow, std::vector<pawn*>& pieces) override;
 	bool isKing() const override { return true; }
 
 	sf::Color getColor() const override;
