@@ -10,19 +10,32 @@ class tile;
 class pawn
 {
 public:
-	pawn(float size, int newColumn, int newRow, bool newDir,sf::Color color, board* newBoard);
+	pawn(float size, int newColumn, int newRow, bool newDir, sf::Color color, board* newBoard);
+	pawn(pawn* pPawn);
 
 	void drawPawn(sf::RenderWindow* window);
-	bool tryMove(int newColumn, int newRow);
+	virtual int tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces);
 
 	sf::Vector2f getPos();
 	void setPos(sf::Vector2f newPos);
 
+	virtual bool isKing() const { return false; }
+
+	int getRow() const { return row; }
+	int getCol() const { return column; }
+
 	float getRadius();
 	void setRadius(float newRadius);
+
+	board* getpBoard();
+
+	virtual sf::Color getColor() const { return pieceColor; }
+
+	bool getDir() const { return dir; }
 	
-private:
+protected:
 	sf::CircleShape circle;
+	sf::Color pieceColor;
 	board* pBoard;
 	int row;
 	int column;
@@ -33,5 +46,11 @@ private:
 class king : public pawn
 {
 public:
+	king(const pawn& p) : pawn(p) {}
 	
+	int tryMove(int newColumn, int newRow, std::vector<pawn*>& pieces) override;
+	bool isKing() const override { return true; }
+
+	sf::Color getColor() const override;
+
 };
