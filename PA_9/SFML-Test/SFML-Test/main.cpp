@@ -151,6 +151,39 @@ int main()
                 }
             } while (tempPawn == nullptr || check == 0);
 
+            while (check != 1)
+            {
+                window.clear();
+                b.drawBoard(&window);
+                window.display();
+                if (checkStuck(tempPawn))
+                {
+                    break;
+                }
+                cout << "Enter Where to Move the Piece (extra jump)" << endl;
+                select = false;
+                while (!select)
+                {
+                    while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                    {
+                        if (click)
+                        {
+                            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                            newCol = mousePos.x / 125;
+                            newRow = mousePos.y / 125;
+                            select = true;
+                            click = false;
+                        }
+                        else click = true;
+                    }
+                }
+                check = tempPawn->tryMove(newCol, newRow, pieces1);
+                if (check == 0)
+                {
+                    cout << "Invalid Move try another" << endl;
+                    select = false;
+                }
+            }
             //add ending game function
             if (pieces2.empty())
             {
@@ -233,6 +266,39 @@ int main()
                 }
             } while (tempPawn == nullptr || check == 0);
 
+            while (check != 1)
+            {
+                window.clear();
+                b.drawBoard(&window);
+                window.display();
+                if (checkStuck(tempPawn))
+                {
+                    break;
+                }
+                cout << "Enter Where to Move the Piece (extra jump)" << endl;
+                select = false;
+                while (!select)
+                {
+                    while (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+                    {
+                        if (click)
+                        {
+                            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+                            newCol = mousePos.x / 125;
+                            newRow = mousePos.y / 125;
+                            select = true;
+                            click = false;
+                        }
+                        else click = true;
+                    }
+                }
+                check = tempPawn->tryMove(newCol, newRow, pieces1);
+                if (check == 0)
+                {
+                    cout << "Invalid Move try another" << endl;
+                    select = false;
+                }
+            }
             //add ending game function
             if (pieces1.empty())
             {

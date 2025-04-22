@@ -15,6 +15,7 @@ public:
 
 	virtual void drawPawn(sf::RenderWindow* window);
 	virtual int tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces);
+	virtual int checkMove(int newColumn, int newRow);
 
 	sf::Vector2f getPos();
 	void setPos(sf::Vector2f newPos);
@@ -49,8 +50,11 @@ public:
 	king(const pawn& p);
 	
 	int tryMove(int newColumn, int newRow, std::vector<pawn*>& pieces) override;
+	int checkMove(int newColumn, int newRow) override;
 	bool isKing() const override { return true; }
 
 	sf::Color getColor() const override;
 
 };
+
+bool checkStuck(pawn* pPawn);

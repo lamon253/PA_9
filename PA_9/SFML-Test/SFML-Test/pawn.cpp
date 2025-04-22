@@ -65,7 +65,7 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 
 			return 1;
 		}
-		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor()))
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
 			for (int i = 0; i < pieces.size(); i++) //deleting the jumped piece out of the pieces vector in main
 			{
@@ -94,6 +94,29 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 			}
 
 			return 2;//return 2 for piece jumped
+		}
+	}
+	return false;
+}
+int pawn::checkMove(int newColumn, int newRow)
+{
+	int dRow = newRow - row;
+	int dColumn = newColumn - column;
+	if (newRow < 0 || newColumn < 0)
+		return false;
+	if (newColumn >= this->pBoard->tiles.size() || newRow >= this->pBoard->tiles[0].size())
+		return false;
+	if (abs(dRow) != abs(dColumn))//moves have to be diagonal
+		return false;
+	if (abs(dColumn) >= 1 && ((dir && dRow >= 1) || (!dir && dRow <= -1)))//path is diagonal length
+	{
+		if (pBoard->tiles[newColumn][newRow].getpPawn() == nullptr && abs(dRow) == 1)//no other pawn on that square
+		{
+			return true;
+		}
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
+		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
+			return true;
 		}
 	}
 	return false;
@@ -154,7 +177,7 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 
 			return 1;
 		}
-		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor()))
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
 			for (int i = 0; i < pieces.size(); i++) //deleting the jumped piece out of the pieces vector in main
 			{
@@ -186,4 +209,45 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 		}
 	}
 	return false;
+}
+int king::checkMove(int newColumn, int newRow)
+{
+	int dRow = newRow - row;
+	int dColumn = newColumn - column;
+	if (newRow < 0 || newColumn < 0)
+		return false;
+	if (newColumn >= this->pBoard->tiles.size() || newRow >= this->pBoard->tiles[0].size())
+		return false;
+	if (newRow < 0 || newColumn < 0)
+		return false;
+	if (newColumn >= this->pBoard->tiles.size() || newRow >= this->pBoard->tiles[0].size())
+		return false;
+	if (abs(dRow) != abs(dColumn))//moves have to be diagonal
+		return false;
+	else
+	{
+		if (pBoard->tiles[newColumn][newRow].getpPawn() == nullptr && abs(dRow) == 1)//no other pawn on that square
+		{
+			return true;
+		}
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
+		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
+			return true;
+		}
+	}
+	return false;
+}
+bool checkStuck(pawn* pPawn)
+{
+	if (pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() + 1)
+		|| pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() - 1)
+		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() + 1)
+		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() - 1))
+		return false;
+	if (pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() + 2)
+		|| pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() - 2)
+		|| pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() + 2)
+		|| pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() - 2))
+		return false;
+	return true;
 }
