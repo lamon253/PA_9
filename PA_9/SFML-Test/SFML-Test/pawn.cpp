@@ -161,19 +161,9 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 		if (pBoard->tiles[newColumn][newRow].getpPawn() == nullptr && abs(dRow) == 1)//no other pawn on that square
 		{
 			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
-			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
-			{
-				column = newColumn;
-				row = newRow;
-				king* pKing = new king(this);
-				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-			}
-			else
-			{
-				pBoard->tiles[newColumn][newRow].setpPawn(this);//sets new pawn position
-				column = newColumn;
-				row = newRow;
-			}
+			pBoard->tiles[newColumn][newRow].setpPawn(this);//sets new pawn position
+			column = newColumn;
+			row = newRow;
 
 			return 1;
 		}
@@ -191,19 +181,9 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 			pBoard->tiles[column + dColumn / 2][row + dRow / 2].setpPawn(nullptr);//sets the tile as empty
 
 			pBoard->tiles[column][row].setpPawn(nullptr);//removes pawn old position
-			if ((newRow == pBoard->tiles.size() - 1 && dir == 1) || (newRow == 0 && dir == 0))// if on appropriot last row copies a king and deletes pawn
-			{
-				column = newColumn;
-				row = newRow;
-				king* pKing = new king(this);
-				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-			}
-			else
-			{
-				pBoard->tiles[newColumn][newRow].setpPawn(this);//sets new pawn position
-				column = newColumn;
-				row = newRow;
-			}
+			pBoard->tiles[newColumn][newRow].setpPawn(this);//sets new pawn position
+			column = newColumn;
+			row = newRow;
 
 			return 2;//return 2 for piece jumped
 		}
