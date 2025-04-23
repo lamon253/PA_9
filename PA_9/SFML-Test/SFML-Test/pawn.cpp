@@ -65,7 +65,7 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 
 			return 1;
 		}
-		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getDir() != dir && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
 			for (int i = 0; i < pieces.size(); i++) //deleting the jumped piece out of the pieces vector in main
 			{
@@ -114,7 +114,7 @@ int pawn::checkMove(int newColumn, int newRow)
 		{
 			return 1;
 		}
-		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getDir() != dir && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
 			return 2;
 		}
@@ -170,7 +170,7 @@ int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 
 			return 1;
 		}
-		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getDir() != dir && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
 			for (int i = 0; i < pieces.size(); i++) //deleting the jumped piece out of the pieces vector in main
 			{
@@ -209,7 +209,7 @@ int king::checkMove(int newColumn, int newRow)
 		{
 			return 1;
 		}
-		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn()->getColor() != this->getColor() && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
+		else if ((abs(dRow) == 2 && pBoard->tiles[column + dColumn / 2][row + dRow / 2].getpPawn() != nullptr && pBoard->tiles[column + dColumn/2][row + dRow/2].getpPawn()->getDir() != dir && pBoard->tiles[newColumn][newRow].getpPawn() == nullptr))
 		{//if jumping over (diagonal 2) AND not jumping over nothing AND jumping over not the same color
 			return 2;
 		}
