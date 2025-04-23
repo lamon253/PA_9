@@ -23,13 +23,12 @@ public:
 
     void TestTileDisplay();      // Test if tile is displayed correctly on the screen.
 
-    void TestPawnPlacement();    // Test if pawns are placed correctly on the board.
+    void testBoardDisplay();     // Test if the board is generated & displayed correctly.
 
     void TestPawnMovement();     // Test if pawns are moving correctly.
 
-    void testBoardDisplay();     // Test if the board is displayed correctly.
+    void TestPawnCapture();      // Test if pawns are capturing correctly.
 
-    void TestTileInteraction();  // Test interactions between pawns and tiles.
 
 private:
 
