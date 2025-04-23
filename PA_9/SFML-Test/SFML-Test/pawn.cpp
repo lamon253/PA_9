@@ -55,16 +55,6 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 				row = newRow;
 				king* pKing = new king(this);
 				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-
-				for (int i = 0; i < pieces.size(); i++)//deletes pawn
-				{
-					if (pieces[i] == this)
-					{
-						pieces[i] = pKing;
-						break;
-					}
-				}
-				delete this;
 			}
 			else
 			{
@@ -95,16 +85,6 @@ int pawn::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 				row = newRow;
 				king* pKing = new king(this);
 				pBoard->tiles[newColumn][newRow].setpPawn(pKing);
-
-				for (int i = 0; i < pieces.size(); i++)//deletes pawn
-				{
-					if (pieces[i] == this)
-					{
-						pieces[i] = pKing;
-						break;
-					}
-				}
-				delete this;
 			}
 			else
 			{
