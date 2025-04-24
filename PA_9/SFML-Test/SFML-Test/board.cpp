@@ -40,3 +40,9 @@ pawn* board::pieceSearch(int col, int row, std::vector<pawn*> pieces) const
 	return nullptr;
 }
 
+tile* board::getTile(int column, int row)
+{
+	if (column >= 0 && column < this->tiles.size() && row >= 0 && row < this->tiles[column].size())
+		return &(this->tiles[column][row]);
+	return nullptr;
+}

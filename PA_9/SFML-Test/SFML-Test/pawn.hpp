@@ -25,10 +25,10 @@ public:
 	int getRow() const { return row; }
 	int getCol() const { return column; }
 
+	board* getpBoard();
 	float getRadius();
 	void setRadius(float newRadius);
 
-	board* getpBoard();
 
 	virtual sf::Color getColor() const { return pieceColor; }
 
@@ -47,7 +47,7 @@ protected:
 class king : public pawn
 {
 public:
-	king(const pawn& p);
+	king(pawn* p);
 	
 	int tryMove(int newColumn, int newRow, std::vector<pawn*>& pieces) override;
 	int checkMove(int newColumn, int newRow) override;
@@ -58,3 +58,4 @@ public:
 };
 
 int checkStuck(pawn* pPawn);
+bool checkStalemate(std::vector<pawn*>& pieces);

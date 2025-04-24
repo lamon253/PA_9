@@ -86,6 +86,11 @@ int main()
             bool select = false;
             bool click = true;
 
+            if (checkStalemate(pieces1) == true)
+            {
+                cout << "Player 1 Has no moves\nPlayer 2 Wins" << endl;
+            }
+
             do
             {
                 cout << "Player 1 (Blue) Choose a Piece to Move (col row)" << endl;
@@ -141,13 +146,16 @@ int main()
                         {
                             if (pieces1[i]->getRow() == 7 && pieces1[i]->isKing() == false)
                             {
-                                king* pKing = new king(pieces1[i]);
-                                pieces1.erase(pieces1.begin() + i);
-                                pieces1.push_back(pKing);
+                                king* pKing = new king(tempPawn);
+                                pieces2.erase(pieces1.begin() + i);
+                                delete tempPawn;
+                                pieces2.push_back(pKing);
+                                b.getTile(newCol, 7)->setpPawn(pKing);
+                                tempPawn = pKing;
                                 break;
                             }
                         }
-                        tempPawn = b.pieceSearch(newCol, newRow, pieces1);
+                        //tempPawn = b.pieceSearch(newCol, newRow, pieces1);
                     }
                 }
             } while (tempPawn == nullptr || check == 0);
@@ -194,13 +202,16 @@ int main()
                     {
                         if (pieces1[i]->getRow() == 7 && pieces1[i]->isKing() == false)
                         {
-                            king* pKing = new king(pieces1[i]);
-                            pieces1.erase(pieces1.begin() + i);
-                            pieces1.push_back(pKing);
+                            king* pKing = new king(tempPawn);
+                            pieces2.erase(pieces1.begin() + i);
+                            delete tempPawn;
+                            pieces2.push_back(pKing);
+                            b.getTile(newCol, 7)->setpPawn(pKing);
+                            tempPawn = pKing;
                             break;
                         }
                     }
-                    tempPawn = b.pieceSearch(newCol, newRow, pieces1);
+                    //tempPawn = b.pieceSearch(newCol, newRow, pieces1);
                 }
             }
             //add ending game function
@@ -219,6 +230,11 @@ int main()
             int check = 0;
             bool select = false;
             bool click = true;
+
+            if (checkStalemate(pieces2) == true)
+            {
+                cout << "Player 2 Has no moves\nPlayer 1 Wins" << endl;
+            }
 
             do
             {
@@ -275,13 +291,16 @@ int main()
                         {
                             if (pieces2[i]->getRow() == 0 && pieces2[i]->isKing() == false)
                             {
-                                king* pKing = new king(pieces2[i]);
+                                king* pKing = new king(tempPawn);
                                 pieces2.erase(pieces2.begin() + i);
+                                delete tempPawn;
                                 pieces2.push_back(pKing);
+                                b.getTile(newCol, 0)->setpPawn(pKing);
+                                tempPawn = pKing;
                                 break;
                             }
                         }
-                        tempPawn = b.pieceSearch(newCol, newRow, pieces2);
+                        //tempPawn = b.pieceSearch(newCol, newRow, pieces2);
                     }
                 }
             } while (tempPawn == nullptr || check == 0);
@@ -328,13 +347,16 @@ int main()
                     {
                         if (pieces2[i]->getRow() == 0 && pieces2[i]->isKing() == false)
                         {
-                            king* pKing = new king(pieces2[i]);
+                            king* pKing = new king(tempPawn);
                             pieces2.erase(pieces2.begin() + i);
+                            delete tempPawn;
                             pieces2.push_back(pKing);
+                            b.getTile(newCol, 0)->setpPawn(pKing);
+                            tempPawn = pKing;
                             break;
                         }
                     }
-                    tempPawn = b.pieceSearch(newCol, newRow, pieces2);
+                    //tempPawn = b.pieceSearch(newCol, newRow, pieces2);
                 }
             }
             //add ending game function

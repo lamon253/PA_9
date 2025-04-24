@@ -145,13 +145,14 @@ sf::Color king::getColor() const
 {
 	return getDir() ? sf::Color::Yellow : sf::Color::Magenta;
 }
-king::king(const pawn& p) : pawn(p)
+king::king(pawn* p) : pawn(p)
 {
-	pieceColor = getColor();
+	pieceColor = p->getColor();
 	circle.setFillColor(pieceColor);
-	row = p.getRow();
-	column = p.getCol();
-	dir = p.getDir();
+	row = p->getRow();
+	column = p->getCol();
+	dir = p->getDir();
+	pBoard = p->getpBoard();
 }
 int king::tryMove(int newColumn, int newRow, std::vector<pawn*> &pieces)
 {
@@ -218,15 +219,32 @@ int king::checkMove(int newColumn, int newRow)
 }
 int checkStuck(pawn* pPawn)
 {
-	if (pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() + 2)
-		|| pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() - 2)
-		|| pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() + 2)
-		|| pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() - 2))
+	if (pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() + 2))
 		return 2;
-	else if (pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() + 1)
-		|| pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() - 1)
-		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() + 1)
-		|| pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() - 1))
+	if (pPawn->checkMove(pPawn->getCol() + 2, pPawn->getRow() - 2))
+		return 2;
+	if (pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() + 2))
+		return 2;
+	if (pPawn->checkMove(pPawn->getCol() - 2, pPawn->getRow() - 2))
+		return 2;
+	if (pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() + 1))
+		return 1;
+	if (pPawn->checkMove(pPawn->getCol() + 1, pPawn->getRow() - 1))
+		return 1;
+	if (pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() + 1))
+		return 1;
+	if (pPawn->checkMove(pPawn->getCol() - 1, pPawn->getRow() - 1))
 		return 1;
 	return 0;
+}
+bool checkStalemate(std::vector<pawn*>& pieces)
+{
+	for (int i = 0; i < pieces.size(); i++)
+	{
+		if (checkStuck(pieces[i]) != 0)
+		{
+			return false;
+		}
+	}
+	return true;
 }

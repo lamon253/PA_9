@@ -15,6 +15,7 @@ public:
 	void drawBoard(sf::RenderWindow* window);
 
 	pawn* pieceSearch(int col, int row, std::vector<pawn*> pieces) const;
+	tile* getTile(int column, int row);
 
 private:
 	friend class pawn;
