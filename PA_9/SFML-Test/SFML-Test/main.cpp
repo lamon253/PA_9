@@ -147,9 +147,9 @@ int main()
                             if (pieces1[i]->getRow() == 7 && pieces1[i]->isKing() == false)
                             {
                                 king* pKing = new king(tempPawn);
-                                pieces2.erase(pieces1.begin() + i);
+                                pieces1.erase(pieces1.begin() + i);
                                 delete tempPawn;
-                                pieces2.push_back(pKing);
+                                pieces1.push_back(pKing);
                                 b.getTile(newCol, 7)->setpPawn(pKing);
                                 tempPawn = pKing;
                                 break;
@@ -203,9 +203,9 @@ int main()
                         if (pieces1[i]->getRow() == 7 && pieces1[i]->isKing() == false)
                         {
                             king* pKing = new king(tempPawn);
-                            pieces2.erase(pieces1.begin() + i);
+                            pieces1.erase(pieces1.begin() + i);
                             delete tempPawn;
-                            pieces2.push_back(pKing);
+                            pieces1.push_back(pKing);
                             b.getTile(newCol, 7)->setpPawn(pKing);
                             tempPawn = pKing;
                             break;
