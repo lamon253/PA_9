@@ -151,7 +151,7 @@ int main()
                                 pieces1.erase(pieces1.begin() + i);
                                 pieces1.push_back(pKing);
                                 b.getTile(newCol, 7)->setpPawn(pKing);
-                                //tempPawn = pKing;
+                                tempPawn = pKing;
                                 break;
                             }
                         }
@@ -206,7 +206,7 @@ int main()
                             pieces1.erase(pieces1.begin() + i);
                             pieces1.push_back(pKing);
                             b.getTile(newCol, 7)->setpPawn(pKing);
-                            //tempPawn = pKing;
+                            tempPawn = pKing;
                             break;
                         }
                     }
