@@ -60,8 +60,9 @@ int main()
     rectangle.setSize({100,100});
 
     int turn = 0;
+    bool win = false;
 
-    while (window.isOpen())
+    while (window.isOpen() && win == false)
     {
         while (const std::optional event = window.pollEvent())
         {
@@ -216,6 +217,7 @@ int main()
             if (pieces2.empty())
             {
                 cout << "Player 2 Has run out of Pieces\nPlayer 1 Wins" << endl;
+                win = true;
             }
         }
         else //player 2 turn
@@ -359,6 +361,7 @@ int main()
             if (pieces1.empty())
             {
                 cout << "Player 1 Has run out of Pieces\nPlayer 2 Wins" << endl;
+                win = true;
             }
         }
     }
