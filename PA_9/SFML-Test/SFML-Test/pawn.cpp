@@ -147,7 +147,7 @@ sf::Color king::getColor() const
 }
 king::king(pawn* p) : pawn(p)
 {
-	pieceColor = p->getColor();
+	pieceColor = getColor();
 	circle.setFillColor(pieceColor);
 	row = p->getRow();
 	column = p->getCol();

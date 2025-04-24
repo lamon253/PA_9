@@ -279,7 +279,7 @@ int main()
                             else click = true;
                         }
                     }
-                    check = tempPawn->tryMove(newCol, newRow, pieces2);
+                    check = tempPawn->tryMove(newCol, newRow, pieces1);
                     if (check == 0)
                     {
                         cout << "Invalid Move try another" << endl;
@@ -335,7 +335,7 @@ int main()
                 {
                     break;//makes double jump optional by clicking the same piece
                 }
-                check = tempPawn->tryMove(newCol, newRow, pieces2);
+                check = tempPawn->tryMove(newCol, newRow, pieces1);
                 if (check == 0)
                 {
                     cout << "Invalid Move try another" << endl;
